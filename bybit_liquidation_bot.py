@@ -1,17 +1,19 @@
 import time
 from pybit.unified_trading import WebSocket
+from _config import *
 
 
 
 ws = WebSocket(testnet=False, channel_type='linear')
 
 
-# Get all elements from the list
-coins = ['BTCUSDT','ADAUSDT']
-
-# Decode bytes to strings
-bybit_symbols = [item.decode('utf-8') for item in coins]
-
+if auto_assets_update == 1:
+    auto_assets = 1 #TODO: get data from API
+    # Decode bytes to strings
+    bybit_symbols = [item.decode('utf-8') for item in auto_assets]
+else: 
+    # Decode bytes to strings
+    bybit_symbols = [item.decode('utf-8') for item in assets]
 
 def handle_message(message):
 
